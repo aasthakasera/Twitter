@@ -6,6 +6,12 @@
 		<h4>{{ object.timestamp }}</h4>
 		<h4>{{ object.timestamp|timesince }}</h4><br/>
 	</p>
+{% empty %}
+	{% if request.GET.q %}
+		<p>No tweets found. </p>
+	{% else %}
+		<p>No tweets yet. </p>
+	{% endif %}
 {% endfor %}
 
 
