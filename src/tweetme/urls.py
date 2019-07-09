@@ -25,10 +25,10 @@ from .views import home
 
 
 urlpatterns = [
+    url(r'^tweets/', include('tweets.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^home/', home),
-    # url(r'^', home),
-    url(r'^tweets/', include('tweets.urls')),
+    url(r'^', home),
 ]
 
 if settings.DEBUG:

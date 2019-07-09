@@ -1,1 +1,12 @@
-{{ object_list }}
+{% for object in object_list %}
+	<p>
+		<h2>{{ object.title }}</h2>
+		{{ object.content }}
+		<h4>{{ object.user }}</h4>
+		<h4>{{ object.timestamp }}</h4>
+		<h4>{{ object.timestamp|timesince }}</h4><br/>
+	</p>
+{% endfor %}
+
+
+
