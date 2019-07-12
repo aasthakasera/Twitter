@@ -25,7 +25,7 @@ from .views import home
 
 
 urlpatterns = [
-    url(r'^tweets/', include('tweets.urls')),
+    url(r'^tweets/', include('tweets.urls', namespace='tweet')),
     url(r'^admin/', admin.site.urls),
     url(r'^home/', home),
     url(r'^', home),
