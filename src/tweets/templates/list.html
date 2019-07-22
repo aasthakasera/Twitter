@@ -1,19 +1,55 @@
-{% include "search.html" %}
-{% for object in object_list %}
-	<p>
-		<h2>{{ object.title }}</h2>
-		{{ object.content }}
-		<h4>{{ object.user }}</h4>
-		<h4>{{ object.timestamp }}</h4>
-		<h4>{{ object.timestamp|timesince }}</h4><br/>
-	</p>
-{% empty %}
-	{% if request.GET.q %}
-		<p>No tweets found. </p>
-	{% else %}
-		<p>No tweets yet. </p>
-	{% endif %}
-{% endfor %}
+{% extends "base.html" %}
+{% load recommended %}
+<style>
+  #tweet-container {
+
+  }
+</style>
+
+{% block script %}
+<script> 
+
+  $(document).ready(function(){
+    
+    loadTweetContainer("tweet-container")
+
+  });
+
+</script>
+{% endblock script %} 
+
+{% block content %}
+
+  <div class="row">
+    <div class='col-sm-2 col-xs-12 ' style="padding-left: 4%; padding-top: 2%; font-family: 'Times New Roman', Times,serif;margin-left: 30px; margin-top: 25px; background-color: orange;">
+      <h2>{{ request.user }}</h2><br/>
+
+      <hr/>
+
+      <br/>
+
+      <h5>Recommended Users</h5>
+      {% recommended request.user %}
+    </div>
+
+      <div class="col-sm-8">
+        {% if not request.GET.q %}
+          <div class="col-xs-10" style="padding-left: 9%; margin-bottom: 5%; margin-top: 4%">
+            {% include "form.html" with form=create_form btn_title='Tweet' action_url=create_url form_class="tweet-form" %}
+          </div>
+        {% endif %}
+
+        <div id="tweet-container" data-url="/api/tweets/">
+  
+        </div>
+
+        <div class='col-sm-2 col-xs-12 ' style="padding-left: 4%; padding-top: 2%; font-family: 'Times New Roman', Times,serif;margin-left: 7%; margin-top: 5px;">
+          <a href="#" id="loadmore">Load More Tweets</a>
+        </div>
+      </div>
+
+        
+{% endblock content %}
 
 
 

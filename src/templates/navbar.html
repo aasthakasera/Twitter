@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href='{% url "tweet:list" %}'>Tweet</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  {% include "search_form.html" %}
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      
+      
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      {% if request.user.is_authenticated %}
+
+      <li class="nav-item dropdown" style="font-size: large;">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Account
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="{{ request.user.profile.get_absolute_url }}">Profile</a>
+          <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+        </div>
+      </li>
+
+      {% else %}
+      <ul class="nav navbar-nav navbar-right" style="">
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'login' %}">Login <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'register' %}">Register <span class="sr-only">(current)</span></a>
+        </li>
+         
+      </ul> 
+      {% endif %}
+
+      <li class="nav-item">
+        <a class="btn btn-info" style="margin-left: 20%; margin-top: 1%; margin-right: 20%" href='{% url "tweet:create" %}'>Tweet</a> 
+      </li>
+    </ul>
+    
+    <!-- <div class="form-inline my-2 my-lg-0">
+
+    </div> -->
+  </div>
+</nav>
+
+
+

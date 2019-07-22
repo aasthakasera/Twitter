@@ -1,4 +1,30 @@
-{{ object.content }}<br/>
-{{ object.user }}<br/>
-{{ object.timestamp }}<br/>
-{{ object.timestamp|timesince }}
+{% extends "base.html" %}
+
+{% block script %}
+<script> 
+
+  $(document).ready(function(){
+    
+    loadTweetContainer("tweet-container" )
+	
+});
+
+</script>
+{% endblock script %} 
+
+{% block content %}
+
+<div class="row">
+	<div class='col-sm-2 col-xs-12' style="/*outline: 5px dotted green;*/ padding-left: 4%; padding-top: 2%; font-family: 'Times New Roman', Times, serif;background-color: yellow; margin-left: 30px; margin-top: 25px;">
+		<h2>{{ object.user }}</h2><br/>
+	</div>
+	<div class="col-sm-9 col-xs-12" style="margin-top: 25px;">
+		<div id="tweet-container">
+		</div>
+		<!-- <h4>{{ object.title }}</h4>
+		<h6>{{ object.content }}</h6>
+		{{ object.timestamp }}<br/>
+		{{ object.timestamp|timesince }} -->
+	</div>
+</div>
+{% endblock content %}
